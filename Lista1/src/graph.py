@@ -9,7 +9,7 @@ class Graph:
         self.stops = {}
         self.edges_by_parent = {}
 
-    def add_stop(self, stop_id: str, stop_name: str, parent_station: str, lat: float, lon: float) -> None:
+    def add_stop(self, stop_id: str, stop_name: str, parent_station: str, lat: float, lon: float, platform_code: str) -> None:
         if parent_station is None or parent_station == "":
             parent_station = stop_id
 
@@ -17,7 +17,8 @@ class Graph:
             "stop_name": stop_name,
             "parent_station": parent_station,
             "lat": lat,
-            "lon": lon
+            "lon": lon,
+            "platform_code": platform_code
         }
 
     def add_edge(self, edge: Edge) -> None:
@@ -32,20 +33,21 @@ class Graph:
         stops: pd.DataFrame = data.stops.copy()
         for _, row in stops.iterrows():
             self.add_stop(
-                stop_id=row["stop_id"],
+                stop_id=str(int(row["stop_id"])),
                 stop_name = row["stop_name"],
-                parent_station=row["parent_station"],
+                parent_station=str(int(row["parent_station"])) if pd.notna(row["parent_station"]) else str(int(row["stop_id"])),
                 lat = row["stop_lat"],
-                lon = row["stop_lon"]
+                lon = row["stop_lon"],
+                platform_code= "" if pd.isna(row["platform_code"]) else row["platform_code"]
             )
         
         rides: pd.DataFrame  = data.get_rides_for_date(departure_dt)
         for _, row in rides.iterrows():
             edge = Edge(
-                from_stop_id = row["from_stop_id"],
-                to_stop_id = row["to_stop_id"],
-                from_parent_stop_id = row["from_parent_stop_id"],
-                to_parent_stop_id = row["to_parent_stop_id"],
+                from_stop_id = str(int(row["from_stop_id"])),
+                to_stop_id = str(int(row["to_stop_id"])),
+                from_parent_stop_id = str(int(row["from_parent_stop_id"])),
+                to_parent_stop_id = str(int(row["to_parent_stop_id"])),
                 departure_time = row["departure_time"],
                 arrival_time = row["arrival_time"],
                 trip_id = row["trip_id"],
