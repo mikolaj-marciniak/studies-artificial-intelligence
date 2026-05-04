@@ -79,37 +79,6 @@ studies-artificial-intelligence/
 └── README.md
 ```
 
-## Key Concepts Practiced
-
-While working on this project, I practiced:
-
-- implementing graph search algorithms in Python
-- modeling public transport connections as a graph
-- working with GTFS-based route planning data
-- designing and comparing heuristic functions
-- implementing game AI decision-making algorithms
-- using Minimax with alpha-beta pruning
-- structuring Python code into separate modules
-- applying algorithmic thinking to practical AI problems
-
-## What I Learned
-
-This project helped me better understand how classic artificial intelligence algorithms can be implemented and applied in practice. I gained experience in graph modeling, pathfinding, optimization techniques, heuristic evaluation, and search-based decision-making in games.
-
-It also improved my ability to structure Python projects, separate responsibilities between modules, and analyze algorithm behavior for different problem types.
-
-## Possible Improvements
-
-Potential future improvements include:
-
-- adding a clearer command-line interface
-- improving documentation for running each task
-- adding sample input and output examples
-- adding unit tests
-- visualizing found routes or game states
-- comparing algorithm performance on different datasets
-- improving configuration of algorithm parameters
-
 ## Author
 
 Mikołaj Marciniak
